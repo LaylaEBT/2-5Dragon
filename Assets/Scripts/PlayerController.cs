@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public int playerHealth = 3;
 
     public GameObject bulletPrefab;
-    public float bulletSpeed = 30f;
+    public float bulletSpeed = 40f;
     public Transform firePoint;
 
     void Start()

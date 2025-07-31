@@ -16,6 +16,19 @@ public class Enemy : MonoBehaviour
         {
             Vector3 direction = (player.position - transform.position).normalized;
             transform.position += direction * speed * Time.deltaTime;
+
+            HandleRotation(direction);
+        }
+    }
+
+    void HandleRotation(Vector3 direction)
+    {
+        if (direction != Vector3.zero)
+        {
+            
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.1f);
         }
     }
 

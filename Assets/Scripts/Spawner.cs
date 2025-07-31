@@ -7,16 +7,16 @@ public class Spawner : MonoBehaviour
     public GameObject speedboostPrefab;
     public GameObject shieldPrefab;
     public Transform player;
-    private float spawnRadius = 15f;
-    public float minDistance = 5f;
+    private float spawnRadius = 30f;
+    public float minDistance = 15f;
     private bool spawnShieldNext = true;
 
     void Start()
     {
-        for (int i = 0; i < 2; i++)
+        /*for (int i = 0; i < 2; i++)
         {
             SpawnEnemy();
-        }
+        }*/
 
         StartCoroutine(SpawnEnemies());
         StartCoroutine(SpawnBoost());
@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            float waitTime = Random.Range(3f, 10f);
+            float waitTime = Random.Range(8f, 15f);
             yield return new WaitForSeconds(waitTime);
             SpawnEnemy();
         }
@@ -36,11 +36,12 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            float waitTime = Random.Range(45f, 60f);
+            float waitTime = Random.Range(25f, 45f);
             yield return new WaitForSeconds(waitTime);
             Vector3 spawnPos = GetSpawnPos();
             GameObject prefabToSpawn = spawnShieldNext ? shieldPrefab : speedboostPrefab;
-            Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+            //Instantiate(prefabToSpawn, spawnPos, Quaternion.identity);
+            Instantiate(prefabToSpawn, spawnPos, prefabToSpawn.transform.rotation);
             spawnShieldNext = !spawnShieldNext;
         }
     }
